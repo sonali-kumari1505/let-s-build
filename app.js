@@ -16,23 +16,22 @@ let score=0;//keydown is written as mention in h2
 
 
 //  building the core logic
-playGround.addEventListener('click',(event)=>{
-    if(started){
-        if (event.target.className=='box'){
-        userFlash(event.target);
-        clicks++;
-        userArr.push(event.target.id)
-        checker();
-            }
-            }
-}) 
+boxes.forEach((box) =>{
+    box.addEventListener("click",()=>{
+        if(started){
+// console.log("click");
+box.classList.add("user");
+setTimeout(()=>{
+    box.classList.remove("user")
+},600) 
+clicks++;
+const targetid=box.getAttribute("id");
+userArr.push(targetid);
+checker();
+ }    
+    })
+})
 
-function userFlash (box){
-    box.classList.add('userFlash');
-    setTimeout(()=>{
-        box.classList.remove('userFlash')
-    },500)
-}
 //function to check userinput
 function checker(){
        if(userArr[clicks-1]!=memArr[clicks-1]){
